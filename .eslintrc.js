@@ -8,6 +8,9 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb-typescript',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'airbnb/hooks',
     // ルールをすべて有効にする
     'eslint:all',

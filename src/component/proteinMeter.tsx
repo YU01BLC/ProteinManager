@@ -1,10 +1,10 @@
-import BatteryGauge from 'react-battery-gauge';
 import { Box, Flex } from '@chakra-ui/react';
+import BatteryGauge from 'react-battery-gauge';
 
 export default function ProteinMeter() {
   return (
     <Box>
-      <Flex justifyContent={'center'} mx={2}>
+      <Flex justifyContent={'center'}>
         <BatteryGauge
           value={80}
           size={500}
