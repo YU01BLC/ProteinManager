@@ -16,7 +16,7 @@ export default function ProteinCount() {
       <Text fontSize={60} pt={2}>
         g
       </Text>
-      {/* 
+      {/*
         <button onClick={reset}>Reset</button>
         <button onClick={pauseResume}>Pause/Resume</button>
         <button onClick={() => update(80)}>Update to 2000</button>

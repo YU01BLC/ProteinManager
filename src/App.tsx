@@ -1,9 +1,9 @@
 import { VStack, Box, Heading } from '@chakra-ui/react';
-import Header from './page/header';
+import CountDown from './component/countDown';
 import InputForm from './component/inputForm';
 import ProteinCount from './component/proteinCount';
 import ProteinMeter from './component/proteinMeter';
-import CountDown from './component/countDown';
+import Header from './page/header';
 
 export default function App() {
   return (
