@@ -1,6 +1,6 @@
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { useRef } from 'react';
 import { useCountUp } from 'react-countup';
-import { Box, Flex, Text } from '@chakra-ui/react';
 
 export default function ProteinCount() {
   const countUpRef = useRef(null);
@@ -16,9 +16,10 @@ export default function ProteinCount() {
       <Text fontSize={60} pt={2}>
         g
       </Text>
-      {/*<button onClick={reset}>Reset</button>
-       <button onClick={pauseResume}>Pause/Resume</button>
-       <button onClick={() => update(80)}>Update to 2000</button>
+      {/* 
+        <button onClick={reset}>Reset</button>
+        <button onClick={pauseResume}>Pause/Resume</button>
+        <button onClick={() => update(80)}>Update to 2000</button>
       */}
     </Flex>
   );
