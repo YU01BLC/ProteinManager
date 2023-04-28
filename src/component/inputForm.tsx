@@ -6,33 +6,49 @@ import {
   HStack,
   Text,
   FormControl,
-  FormErrorMessage,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { InputContext } from '../../src/App';
 
 interface FormProps {
   initialValue: number;
   onChange?: (valueAsString: string, valueAsNumber: number) => void;
 }
 
+interface InputProps {
+  name: string;
+  gram: number;
+}
+
 export default function InputForm({ initialValue, onChange }: FormProps) {
   const [name, setName] = useState<string>('');
   const [gram, setGram] = useState<number>(initialValue);
   const [invalidFlg, setInvalidFlg] = useState<boolean>(false);
+  const { inputValues, setInputValues } = useContext(InputContext);
 
   const handleSubmit = () => {
     if (name === '' || gram === 0) {
       setInvalidFlg(true);
-    } else {
-      setName('');
-      setGram(0);
-      setInvalidFlg(false);
+      return;
     }
+    const newInputValues = [
+      ...inputValues,
+      {
+        name,
+        gram,
+      },
+    ];
+    setInputValues(newInputValues);
+    localStorage.setItem('inputHistory', JSON.stringify(newInputValues));
+    console.log('newInputValues', newInputValues);
+    setName('');
+    setGram(0);
+    setInvalidFlg(false);
   };
 
   const handleChange = (valueAsString: string, valueAsNumber: number) => {
