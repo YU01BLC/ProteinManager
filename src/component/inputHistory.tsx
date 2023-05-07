@@ -1,6 +1,6 @@
-import { useContext } from 'react';
 import { VStack, Heading, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Button } from '@chakra-ui/react';
-import { InputContext } from '../../src/App';
+import { useContext } from 'react';
+import { InputContext } from '../page/mainFunction';
 
 export default function InputHistory() {
   const { inputValues, setInputValues } = useContext(InputContext);
