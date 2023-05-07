@@ -2,7 +2,7 @@ import { Box, Text } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 
 export default function CountDown() {
-  const [timeLeft, setTimeLeft] = useState(60 * 60); // 1 hour in seconds
+  const [timeLeft, setTimeLeft] = useState(60 * 60);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
