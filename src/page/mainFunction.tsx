@@ -52,7 +52,7 @@ export default function MainFunction({ end, ...options }: UseProteinCountUpProps
       update(gramTotal);
       console.log('gramTotal', gramTotal);
     }
-  }, [gramTotal]);
+  }, [gramTotal, update]);
   return (
     <VStack mx={3}>
       <Heading>1日の摂取プロテイン目安</Heading>
