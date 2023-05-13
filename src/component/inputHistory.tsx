@@ -1,14 +1,17 @@
-import { useContext } from 'react';
 import { VStack, Heading, TableContainer, Table, Thead, Tbody, Tr, Th, Td, Button } from '@chakra-ui/react';
-import { InputContext } from '../../src/App';
+import { useContext } from 'react';
+import { InputContext } from '../page/mainFunction';
 
 export default function InputHistory() {
-  const { inputValues, setInputValues } = useContext(InputContext);
+  const { inputValues, gramTotal, setInputValues, setGramTotal } = useContext(InputContext);
 
   const handleDelete = (index: number) => {
     const newInputValues = [...inputValues];
     newInputValues.splice(index, 1);
     setInputValues(newInputValues);
+    const result: number = gramTotal + inputValues[0].gram;
+    setGramTotal(result);
+    localStorage.setItem('gramTotal', result.toString());
     localStorage.setItem('inputHistory', JSON.stringify(newInputValues));
   };
 
