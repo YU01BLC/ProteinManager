@@ -3,8 +3,6 @@ import {
   Input,
   VStack,
   HStack,
-  Box,
-  Flex,
   Text,
   FormControl,
   NumberInput,
@@ -16,7 +14,6 @@ import {
 import { useState, useContext } from 'react';
 import { CountUpProps } from 'react-countup';
 import RegisterButton from './uiParts/registerButton';
-import useProteinCount from '../logic/proteinCount';
 import { InputContext } from '../page/mainFunction';
 
 interface FormProps {
@@ -35,10 +32,7 @@ export default function InputForm({ initialValue, onChange, end, ...options }: C
   const [gram, setGram] = useState<number>(initialValue);
   const [invalidFlg, setInvalidFlg] = useState<boolean>(false);
   const { inputValues, gramTotal, setInputValues, setGramTotal } = useContext(InputContext);
-  const { countUpRef, update } = useProteinCount({
-    end: gramTotal,
-    ...options,
-  });
+
   const handleSubmit = (): void => {
     if (name === '' || gram === 0) {
       setInvalidFlg(true);
@@ -52,7 +46,6 @@ export default function InputForm({ initialValue, onChange, end, ...options }: C
       },
     ];
     const result: number = gramTotal - gram;
-    update(result);
     setGramTotal(result);
     setInputValues(newInputValues);
     localStorage.setItem('inputHistory', JSON.stringify(newInputValues));
@@ -71,12 +64,6 @@ export default function InputForm({ initialValue, onChange, end, ...options }: C
 
   return (
     <VStack>
-      <Flex justifyContent={'center'} alignItems={'center'}>
-        <Box fontSize={100} pr={3} ref={countUpRef} />
-        <Text fontSize={60} pt={2}>
-          g
-        </Text>
-      </Flex>
       <HStack alignItems={'end'} mb={10}>
         <FormControl>
           <FormLabel htmlFor='name'>食品名</FormLabel>
