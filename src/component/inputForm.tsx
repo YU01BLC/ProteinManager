@@ -21,13 +21,7 @@ interface FormProps {
   onChange?: (valueAsString: string, valueAsNumber: number) => void;
 }
 
-interface UseProteinCountUpProps extends Omit<CountUpProps, 'end'> {
-  end?: number;
-}
-
-type CombinedProps = FormProps & UseProteinCountUpProps;
-
-export default function InputForm({ initialValue, onChange, end, ...options }: CombinedProps) {
+export default function InputForm({ initialValue, onChange }: FormProps) {
   const [name, setName] = useState<string>('');
   const [gram, setGram] = useState<number>(initialValue);
   const [invalidFlg, setInvalidFlg] = useState<boolean>(false);
