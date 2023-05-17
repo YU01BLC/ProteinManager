@@ -3,14 +3,18 @@ import { useContext } from 'react';
 import { InputContext } from '../page/mainFunction';
 
 export default function InputHistory() {
-  const { inputValues, gramTotal, setInputValues, setGramTotal } = useContext(InputContext);
+  const { inputValues, gramTotal, meterCount, setInputValues, setGramTotal, setMeterCount } = useContext(InputContext);
 
   const handleDelete = (index: number) => {
     const newInputValues = [...inputValues];
     newInputValues.splice(index, 1);
     setInputValues(newInputValues);
-    const result: number = gramTotal + inputValues[0].gram;
+    const result: number = gramTotal + inputValues[index].gram;
     setGramTotal(result);
+    setMeterCount(meterCount - inputValues[index].gram);
+    if (meterCount - inputValues[index].gram < 0) {
+      setMeterCount(0);
+    }
     localStorage.setItem('gramTotal', result.toString());
     localStorage.setItem('inputHistory', JSON.stringify(newInputValues));
   };
