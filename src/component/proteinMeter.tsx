@@ -1,12 +1,16 @@
+import { useContext } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import BatteryGauge from 'react-battery-gauge';
+import { InputContext } from '../page/mainFunction';
 
 export default function ProteinMeter() {
+  const { meterCount } = useContext(InputContext);
+
   return (
     <Box>
       <Flex justifyContent={'center'}>
         <BatteryGauge
-          value={80}
+          value={meterCount}
           size={500}
           animated={true}
           aspectRatio={0.23}
@@ -26,3 +30,5 @@ export default function ProteinMeter() {
     </Box>
   );
 }
+
+// 1gあたり7.5分が消化時間目安
