@@ -12,7 +12,6 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react';
 import { useState, useContext } from 'react';
-import { CountUpProps } from 'react-countup';
 import RegisterButton from './uiParts/registerButton';
 import { InputContext } from '../page/mainFunction';
 
@@ -25,7 +24,7 @@ export default function InputForm({ initialValue, onChange }: FormProps) {
   const [name, setName] = useState<string>('');
   const [gram, setGram] = useState<number>(initialValue);
   const [invalidFlg, setInvalidFlg] = useState<boolean>(false);
-  const { inputValues, gramTotal, setInputValues, setGramTotal } = useContext(InputContext);
+  const { inputValues, gramTotal, meterCount, setInputValues, setGramTotal, setMeterCount } = useContext(InputContext);
 
   const handleSubmit = (): void => {
     if (name === '' || gram === 0) {
@@ -42,6 +41,10 @@ export default function InputForm({ initialValue, onChange }: FormProps) {
     const result: number = gramTotal - gram;
     setGramTotal(result);
     setInputValues(newInputValues);
+    setMeterCount(meterCount + gram);
+    if (meterCount + gram > 100) {
+      setMeterCount(100);
+    }
     localStorage.setItem('inputHistory', JSON.stringify(newInputValues));
     localStorage.setItem('gramTotal', result.toString());
     setName('');
